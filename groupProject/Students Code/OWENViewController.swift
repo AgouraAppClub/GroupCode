@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseAuth
+
 
 class OWENViewController: UIViewController, UITableViewDelegate,UITableViewDataSource{
 
@@ -65,3 +69,39 @@ class BasicIntroTableViewCell: UITableViewCell {
 
 
 }
+
+class firebaseIntro: UIViewController {
+    
+    @IBOutlet weak var Loginpress:UIButton!
+    @IBOutlet weak var SignUP:UIButton!
+    @IBOutlet weak var User:UITextField!
+    @IBOutlet weak var Password:UITextField!
+    
+    
+    
+    
+
+    override func viewDidLoad() {
+        
+        super.viewDidLoad()
+    }
+    
+    @IBAction func login(_ sender: Any) {
+        Auth.auth().signIn(withEmail:email, password: password) {[weak self] authResult, error in
+            guard let strongSelf = self else { return }
+                                                                }
+      
+    }
+    @IBAction func signup(_ sender: Any){
+        let email = User.text!
+        let password = Password.text!
+        Auth.auth().createUser(withEmail: email, password:
+                              password) {authResult, error in
+                                        }
+    }
+        
+        
+    
+}
+
+    
